@@ -68,7 +68,7 @@ const Index = () => {
                 selectedType === 'design' ? 'text-black' : 'text-gray-400 hover:text-black'
               }`}
             >
-              ГРАФИКА
+              ДИЗАЙН
             </button>
             <button className="px-6 py-2 bg-accent text-white text-sm font-medium tracking-wider hover:bg-black transition-colors">
               КОНТАКТ
