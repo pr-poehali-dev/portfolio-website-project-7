@@ -3,7 +3,7 @@ import Icon from '@/components/ui/icon';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 
 type WorkType = 'photography' | 'design';
-type Category = 'all' | 'portraits' | 'weddings' | 'landscapes' | 'architecture';
+type Category = 'all' | 'portraits' | 'landscapes' | 'architecture';
 
 interface Work {
   id: number;
@@ -20,7 +20,7 @@ const works: Work[] = [
   { id: 3, src: 'https://cdn.poehali.dev/files/a0b4caf7-f924-42af-ba1c-4e42e565bc49.jpg', type: 'photography', category: 'portraits', title: 'Portrait 3' },
   { id: 4, src: 'https://cdn.poehali.dev/files/4ecca712-4862-47a0-999e-2a740d55182b.jpeg', type: 'photography', category: 'portraits', title: 'Portrait 4' },
   { id: 5, src: 'https://cdn.poehali.dev/files/26a97bfa-80a3-4fdf-9114-2677f8731896.jpg', type: 'photography', category: 'portraits', title: 'Portrait 5' },
-  { id: 6, src: 'https://cdn.poehali.dev/projects/d058fa51-c57a-4c09-887a-08deab4356b5/files/72b1be12-231e-4e14-b3aa-4e6ae759752b.jpg', type: 'photography', category: 'weddings', title: 'Wedding Day' },
+
   { id: 7, src: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80', type: 'photography', category: 'landscapes', title: 'Mountain View' },
   { id: 8, src: 'https://images.unsplash.com/photo-1511818966892-d7d671e672a2?w=800&q=80', type: 'photography', category: 'architecture', title: 'Urban Lines' },
   { id: 9, src: 'https://cdn.poehali.dev/projects/d058fa51-c57a-4c09-887a-08deab4356b5/files/d2915cfd-2cfb-491b-9abd-122a9c066248.jpg', type: 'design', title: 'Brand Identity', description: 'Minimalist poster design' },
@@ -37,7 +37,6 @@ const Index = () => {
   const categories: { id: Category; label: string }[] = [
     { id: 'all', label: 'ВСЕ' },
     { id: 'portraits', label: 'ПОРТРЕТЫ' },
-    { id: 'weddings', label: 'СВАДЬБЫ' },
     { id: 'landscapes', label: 'ПЕЙЗАЖИ' },
     { id: 'architecture', label: 'АРХИТЕКТУРА' },
   ];
