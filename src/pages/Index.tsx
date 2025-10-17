@@ -82,7 +82,7 @@ const Index = () => {
           <div className="grid grid-cols-2 gap-24 items-center">
             <div className="space-y-8 animate-fade-in">
               <div className="w-16 h-1 bg-accent" />
-              <h1 className="text-7xl font-bold leading-none tracking-tight">
+              <h1 className="text-7xl font-bold leading-none tracking-tight" style={{ fontFamily: 'Soledago, Inter, sans-serif' }}>
                 ДИЗАЙН<br/>
                 <span className="text-accent">+</span><br/>
                 ФОТО
