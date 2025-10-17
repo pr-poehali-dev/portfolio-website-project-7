@@ -1,157 +1,165 @@
 import { useState } from 'react';
 import Icon from '@/components/ui/icon';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
-import { Button } from '@/components/ui/button';
 
-type Category = 'all' | 'portraits' | 'weddings' | 'landscapes' | 'architecture' | 'students';
+type WorkType = 'photography' | 'design';
+type Category = 'all' | 'portraits' | 'weddings' | 'landscapes' | 'architecture';
 
-interface Photo {
+interface Work {
   id: number;
   src: string;
-  category: Category;
+  type: WorkType;
+  category?: Category;
   title: string;
-  author?: string;
+  description?: string;
 }
 
-const photos: Photo[] = [
-  { id: 1, src: 'https://cdn.poehali.dev/projects/d058fa51-c57a-4c09-887a-08deab4356b5/files/3bf27465-46e9-4279-b9e0-81a085039820.jpg', category: 'portraits', title: 'Портрет 1' },
-  { id: 2, src: 'https://cdn.poehali.dev/projects/d058fa51-c57a-4c09-887a-08deab4356b5/files/72b1be12-231e-4e14-b3aa-4e6ae759752b.jpg', category: 'weddings', title: 'Свадьба 1' },
-  { id: 3, src: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80', category: 'landscapes', title: 'Пейзаж 1' },
-  { id: 4, src: 'https://images.unsplash.com/photo-1511818966892-d7d671e672a2?w=800&q=80', category: 'architecture', title: 'Архитектура 1' },
-  { id: 5, src: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=800&q=80', category: 'portraits', title: 'Портрет 2' },
-  { id: 6, src: 'https://images.unsplash.com/photo-1519741497674-611481863552?w=800&q=80', category: 'weddings', title: 'Свадьба 2' },
-  { id: 7, src: 'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=800&q=80', category: 'landscapes', title: 'Пейзаж 2' },
-  { id: 8, src: 'https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=800&q=80', category: 'architecture', title: 'Архитектура 2' },
-  { id: 9, src: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80', category: 'students', title: 'Работа ученика', author: 'Анна Петрова' },
-  { id: 10, src: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=800&q=80', category: 'students', title: 'Работа ученика', author: 'Иван Сидоров' },
-  { id: 11, src: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=800&q=80', category: 'students', title: 'Работа ученика', author: 'Мария Кузнецова' },
-  { id: 12, src: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=800&q=80', category: 'students', title: 'Работа ученика', author: 'Дмитрий Волков' },
+const works: Work[] = [
+  { id: 1, src: 'https://cdn.poehali.dev/projects/d058fa51-c57a-4c09-887a-08deab4356b5/files/3bf27465-46e9-4279-b9e0-81a085039820.jpg', type: 'photography', category: 'portraits', title: 'Portrait Series' },
+  { id: 2, src: 'https://cdn.poehali.dev/projects/d058fa51-c57a-4c09-887a-08deab4356b5/files/72b1be12-231e-4e14-b3aa-4e6ae759752b.jpg', type: 'photography', category: 'weddings', title: 'Wedding Day' },
+  { id: 3, src: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80', type: 'photography', category: 'landscapes', title: 'Mountain View' },
+  { id: 4, src: 'https://images.unsplash.com/photo-1511818966892-d7d671e672a2?w=800&q=80', type: 'photography', category: 'architecture', title: 'Urban Lines' },
+  { id: 5, src: 'https://cdn.poehali.dev/projects/d058fa51-c57a-4c09-887a-08deab4356b5/files/d2915cfd-2cfb-491b-9abd-122a9c066248.jpg', type: 'design', title: 'Brand Identity', description: 'Minimalist poster design' },
+  { id: 6, src: 'https://cdn.poehali.dev/projects/d058fa51-c57a-4c09-887a-08deab4356b5/files/8553c7b8-1985-4978-ac41-21cacbcdff38.jpg', type: 'design', title: 'Logo System', description: 'Corporate branding' },
+  { id: 7, src: 'https://images.unsplash.com/photo-1626785774573-4b799315345d?w=800&q=80', type: 'design', title: 'Typography Poster', description: 'Swiss design style' },
+  { id: 8, src: 'https://images.unsplash.com/photo-1634986666676-ec8fd927c23d?w=800&q=80', type: 'design', title: 'Editorial Layout', description: 'Magazine spread' },
 ];
 
 const Index = () => {
+  const [selectedType, setSelectedType] = useState<WorkType>('photography');
   const [selectedCategory, setSelectedCategory] = useState<Category>('all');
-  const [selectedPhoto, setSelectedPhoto] = useState<Photo | null>(null);
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [selectedWork, setSelectedWork] = useState<Work | null>(null);
 
-  const categories = [
-    { id: 'all' as Category, label: 'Все' },
-    { id: 'portraits' as Category, label: 'Портреты' },
-    { id: 'weddings' as Category, label: 'Свадьбы' },
-    { id: 'landscapes' as Category, label: 'Пейзажи' },
-    { id: 'architecture' as Category, label: 'Архитектура' },
-    { id: 'students' as Category, label: 'Работы учеников' },
+  const categories: { id: Category; label: string }[] = [
+    { id: 'all', label: 'ВСЕ' },
+    { id: 'portraits', label: 'ПОРТРЕТЫ' },
+    { id: 'weddings', label: 'СВАДЬБЫ' },
+    { id: 'landscapes', label: 'ПЕЙЗАЖИ' },
+    { id: 'architecture', label: 'АРХИТЕКТУРА' },
   ];
 
-  const filteredPhotos = selectedCategory === 'all' 
-    ? photos 
-    : photos.filter(photo => photo.category === selectedCategory);
-
-  const openPhoto = (photo: Photo) => {
-    setSelectedPhoto(photo);
-    setIsDialogOpen(true);
-  };
+  const filteredWorks = works.filter(work => {
+    if (work.type !== selectedType) return false;
+    if (selectedType === 'design') return true;
+    return selectedCategory === 'all' || work.category === selectedCategory;
+  });
 
   return (
-    <div className="min-h-screen bg-background">
-      <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
-        <div className="container mx-auto px-6 py-6">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <Icon name="Camera" size={28} className="text-primary" />
-              <span className="font-cormorant text-2xl font-semibold text-primary">
-                Алексей Фотограф
-              </span>
-            </div>
-            
-            <div className="hidden md:flex items-center gap-8">
-              {categories.slice(1).map((cat) => (
-                <button
-                  key={cat.id}
-                  onClick={() => setSelectedCategory(cat.id)}
-                  className={`text-sm font-light tracking-wide transition-colors hover:text-primary ${
-                    selectedCategory === cat.id ? 'text-primary font-normal' : 'text-muted-foreground'
-                  }`}
-                >
-                  {cat.label}
-                </button>
-              ))}
-            </div>
-            
-            <Button variant="outline" size="sm" className="hidden md:flex">
-              Контакты
-            </Button>
+    <div className="min-h-screen bg-white">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-black">
+        <div className="container mx-auto px-8 py-6 flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <div className="w-8 h-8 bg-black" />
+            <span className="text-xl font-bold tracking-tight">STUDIO</span>
+          </div>
+          
+          <div className="flex items-center gap-12">
+            <button
+              onClick={() => { setSelectedType('photography'); setSelectedCategory('all'); }}
+              className={`text-sm font-medium tracking-wider transition-colors ${
+                selectedType === 'photography' ? 'text-black' : 'text-gray-400 hover:text-black'
+              }`}
+            >
+              ФОТОГРАФИЯ
+            </button>
+            <button
+              onClick={() => setSelectedType('design')}
+              className={`text-sm font-medium tracking-wider transition-colors ${
+                selectedType === 'design' ? 'text-black' : 'text-gray-400 hover:text-black'
+              }`}
+            >
+              ГРАФИКА
+            </button>
+            <button className="px-6 py-2 bg-accent text-white text-sm font-medium tracking-wider hover:bg-black transition-colors">
+              КОНТАКТ
+            </button>
           </div>
         </div>
       </nav>
 
-      <section className="container mx-auto px-6 py-20">
-        <div className="grid md:grid-cols-2 gap-16 items-center max-w-6xl mx-auto">
-          <div className="order-2 md:order-1 animate-fade-in">
-            <img
-              src="https://cdn.poehali.dev/projects/d058fa51-c57a-4c09-887a-08deab4356b5/files/c32f6460-7ddb-4a16-bba5-c73d78e64fe8.jpg"
-              alt="Алексей Фотограф"
-              className="w-full aspect-square object-cover grayscale hover:grayscale-0 transition-all duration-500"
-            />
-          </div>
-          
-          <div className="order-1 md:order-2 space-y-6 animate-fade-in" style={{ animationDelay: '0.2s' }}>
-            <h1 className="font-cormorant text-5xl md:text-6xl font-semibold text-primary leading-tight">
-              Обо мне
-            </h1>
-            <p className="text-muted-foreground text-lg leading-relaxed font-light">
-              Я профессиональный фотограф с более чем 10-летним опытом работы. 
-              Специализируюсь на портретной, свадебной съёмке и архитектурной фотографии. 
-              Моя цель — запечатлеть искренние эмоции и создать вневременные изображения, 
-              которые рассказывают истории.
-            </p>
-            <p className="text-muted-foreground leading-relaxed font-light">
-              Провожу мастер-классы для начинающих фотографов и делюсь своим опытом, 
-              помогая раскрыть творческий потенциал каждого ученика.
-            </p>
-            <Button className="mt-4">
-              Связаться со мной
-            </Button>
+      <section className="pt-32 pb-20 px-8">
+        <div className="container mx-auto max-w-6xl">
+          <div className="grid grid-cols-2 gap-24 items-center">
+            <div className="space-y-8 animate-fade-in">
+              <div className="w-16 h-1 bg-accent" />
+              <h1 className="text-7xl font-bold leading-none tracking-tight">
+                ДИЗАЙН<br/>
+                <span className="text-accent">+</span><br/>
+                ФОТО
+              </h1>
+              <p className="text-base leading-relaxed text-gray-600 max-w-md">
+                Минималистичный подход к визуальному дизайну и фотографии. 
+                Чистые линии, смелая типографика, точная композиция.
+              </p>
+              <div className="flex gap-4 pt-4">
+                <div className="w-12 h-12 border border-black flex items-center justify-center cursor-pointer hover:bg-black hover:text-white transition-colors">
+                  <Icon name="Instagram" size={20} />
+                </div>
+                <div className="w-12 h-12 border border-black flex items-center justify-center cursor-pointer hover:bg-black hover:text-white transition-colors">
+                  <Icon name="Linkedin" size={20} />
+                </div>
+                <div className="w-12 h-12 border border-black flex items-center justify-center cursor-pointer hover:bg-black hover:text-white transition-colors">
+                  <Icon name="Mail" size={20} />
+                </div>
+              </div>
+            </div>
+            
+            <div className="relative animate-scale-in" style={{ animationDelay: '0.2s' }}>
+              <div className="absolute -top-8 -left-8 w-full h-full border-2 border-accent -z-10" />
+              <img
+                src="https://cdn.poehali.dev/projects/d058fa51-c57a-4c09-887a-08deab4356b5/files/c32f6460-7ddb-4a16-bba5-c73d78e64fe8.jpg"
+                alt="Studio"
+                className="w-full aspect-square object-cover grayscale"
+              />
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="container mx-auto px-6 py-20 bg-muted/30">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-wrap gap-4 justify-center mb-12">
-            {categories.map((cat) => (
-              <button
-                key={cat.id}
-                onClick={() => setSelectedCategory(cat.id)}
-                className={`px-6 py-2 rounded-full text-sm font-light tracking-wide transition-all ${
-                  selectedCategory === cat.id
-                    ? 'bg-primary text-primary-foreground'
-                    : 'bg-background text-muted-foreground hover:bg-accent'
-                }`}
-              >
-                {cat.label}
-              </button>
-            ))}
+      {selectedType === 'photography' && (
+        <div className="border-t border-black py-6 bg-muted/20">
+          <div className="container mx-auto px-8">
+            <div className="flex gap-8 justify-center">
+              {categories.map((cat) => (
+                <button
+                  key={cat.id}
+                  onClick={() => setSelectedCategory(cat.id)}
+                  className={`text-xs font-bold tracking-widest transition-colors relative ${
+                    selectedCategory === cat.id ? 'text-black' : 'text-gray-400 hover:text-black'
+                  }`}
+                >
+                  {cat.label}
+                  {selectedCategory === cat.id && (
+                    <div className="absolute -bottom-3 left-0 right-0 h-0.5 bg-accent" />
+                  )}
+                </button>
+              ))}
+            </div>
           </div>
+        </div>
+      )}
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {filteredPhotos.map((photo, index) => (
+      <section className="py-20 px-8">
+        <div className="container mx-auto max-w-7xl">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-black">
+            {filteredWorks.map((work, index) => (
               <div
-                key={photo.id}
-                className="group relative aspect-square overflow-hidden bg-muted cursor-pointer animate-scale-in"
+                key={work.id}
+                className="group relative aspect-square bg-white overflow-hidden cursor-pointer animate-scale-in"
                 style={{ animationDelay: `${index * 0.05}s` }}
-                onClick={() => openPhoto(photo)}
+                onClick={() => setSelectedWork(work)}
               >
                 <img
-                  src={photo.src}
-                  alt={photo.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  src={work.src}
+                  alt={work.title}
+                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
-                    <h3 className="font-cormorant text-lg font-semibold">{photo.title}</h3>
-                    {photo.author && (
-                      <p className="text-sm text-white/80 font-light">{photo.author}</p>
+                <div className="absolute inset-0 bg-accent/0 group-hover:bg-accent/90 transition-all duration-300 flex items-center justify-center">
+                  <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-center text-white p-6">
+                    <h3 className="text-xl font-bold mb-2 tracking-wide">{work.title}</h3>
+                    {work.description && (
+                      <p className="text-sm tracking-wider">{work.description}</p>
                     )}
                   </div>
                 </div>
@@ -161,66 +169,72 @@ const Index = () => {
         </div>
       </section>
 
-      {selectedCategory === 'students' && (
-        <section className="container mx-auto px-6 py-16 text-center">
-          <h2 className="font-cormorant text-4xl font-semibold text-primary mb-4">
-            Горжусь успехами моих учеников
-          </h2>
-          <p className="text-muted-foreground font-light max-w-2xl mx-auto">
-            Эти работы созданы моими талантливыми учениками после прохождения курсов. 
-            Каждый из них нашёл свой уникальный стиль и продолжает развиваться в фотографии.
-          </p>
+      {selectedType === 'design' && (
+        <section className="py-20 px-8 bg-black text-white">
+          <div className="container mx-auto max-w-4xl text-center space-y-6">
+            <h2 className="text-5xl font-bold tracking-tight">
+              ГРАФИЧЕСКИЙ<br/>ДИЗАЙН
+            </h2>
+            <div className="w-24 h-1 bg-accent mx-auto" />
+            <p className="text-gray-400 leading-relaxed max-w-2xl mx-auto">
+              Работаю с брендингом, типографикой и визуальной идентичностью. 
+              Создаю простые и эффективные решения в духе швейцарского дизайна.
+            </p>
+          </div>
         </section>
       )}
 
-      <footer className="border-t border-border bg-background">
-        <div className="container mx-auto px-6 py-12">
-          <div className="grid md:grid-cols-3 gap-8 text-center md:text-left">
+      <footer className="border-t border-black bg-white py-16 px-8">
+        <div className="container mx-auto max-w-6xl">
+          <div className="grid grid-cols-3 gap-12">
             <div>
-              <h3 className="font-cormorant text-xl font-semibold mb-3">Контакты</h3>
-              <p className="text-muted-foreground font-light text-sm">contact@photographer.ru</p>
-              <p className="text-muted-foreground font-light text-sm">+7 (999) 123-45-67</p>
+              <div className="w-12 h-12 bg-black mb-4" />
+              <p className="text-xs text-gray-600 leading-relaxed">
+                Студия дизайна<br/>и фотографии
+              </p>
             </div>
             <div>
-              <h3 className="font-cormorant text-xl font-semibold mb-3">Социальные сети</h3>
-              <div className="flex gap-4 justify-center md:justify-start">
-                <Icon name="Instagram" size={20} className="text-muted-foreground hover:text-primary cursor-pointer transition-colors" />
-                <Icon name="Facebook" size={20} className="text-muted-foreground hover:text-primary cursor-pointer transition-colors" />
-                <Icon name="Twitter" size={20} className="text-muted-foreground hover:text-primary cursor-pointer transition-colors" />
-              </div>
+              <h3 className="text-sm font-bold mb-4 tracking-wider">КОНТАКТЫ</h3>
+              <p className="text-xs text-gray-600 space-y-1">
+                <span className="block">studio@design.ru</span>
+                <span className="block">+7 999 123 45 67</span>
+              </p>
             </div>
             <div>
-              <h3 className="font-cormorant text-xl font-semibold mb-3">Услуги</h3>
-              <p className="text-muted-foreground font-light text-sm">Портретная съёмка</p>
-              <p className="text-muted-foreground font-light text-sm">Свадебная фотография</p>
-              <p className="text-muted-foreground font-light text-sm">Мастер-классы</p>
+              <h3 className="text-sm font-bold mb-4 tracking-wider">УСЛУГИ</h3>
+              <p className="text-xs text-gray-600 space-y-1">
+                <span className="block">Фотосъёмка</span>
+                <span className="block">Брендинг</span>
+                <span className="block">Графический дизайн</span>
+              </p>
             </div>
           </div>
-          <div className="mt-12 pt-8 border-t border-border text-center text-sm text-muted-foreground font-light">
-            © 2024 Алексей Фотограф. Все права защищены.
+          <div className="mt-12 pt-8 border-t border-gray-200 text-center text-xs text-gray-400 tracking-wider">
+            © 2024 STUDIO — ALL RIGHTS RESERVED
           </div>
         </div>
       </footer>
 
-      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-        <DialogContent className="max-w-7xl w-[95vw] h-[95vh] p-0 bg-black/95">
-          {selectedPhoto && (
-            <div className="relative w-full h-full flex items-center justify-center p-8">
+      <Dialog open={!!selectedWork} onOpenChange={() => setSelectedWork(null)}>
+        <DialogContent className="max-w-7xl w-[95vw] h-[95vh] p-0 bg-black">
+          {selectedWork && (
+            <div className="relative w-full h-full flex items-center justify-center p-12">
               <button
-                onClick={() => setIsDialogOpen(false)}
-                className="absolute top-4 right-4 z-50 p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+                onClick={() => setSelectedWork(null)}
+                className="absolute top-6 right-6 z-50 w-12 h-12 border border-white hover:bg-white hover:text-black transition-colors flex items-center justify-center text-white"
               >
-                <Icon name="X" size={24} className="text-white" />
+                <Icon name="X" size={20} />
               </button>
               <img
-                src={selectedPhoto.src}
-                alt={selectedPhoto.title}
+                src={selectedWork.src}
+                alt={selectedWork.title}
                 className="max-w-full max-h-full object-contain"
               />
-              <div className="absolute bottom-8 left-8 text-white">
-                <h3 className="font-cormorant text-2xl font-semibold">{selectedPhoto.title}</h3>
-                {selectedPhoto.author && (
-                  <p className="text-white/80 font-light mt-1">Автор: {selectedPhoto.author}</p>
+              <div className="absolute bottom-12 left-12 text-white">
+                <div className="w-12 h-0.5 bg-accent mb-4" />
+                <h3 className="text-3xl font-bold tracking-wide mb-2">{selectedWork.title}</h3>
+                {selectedWork.description && (
+                  <p className="text-gray-400 tracking-wider">{selectedWork.description}</p>
                 )}
               </div>
             </div>
