@@ -204,7 +204,7 @@ const Index = () => {
               <h3 className="text-sm font-bold mb-4 tracking-wider">УСЛУГИ</h3>
               <p className="text-xs text-gray-600 space-y-1">
                 <span className="block">Фотосъёмка</span>
-                <span className="block">Брендинг</span>
+                <span className="block">Обучение</span>
                 <span className="block">Графический дизайн</span>
               </p>
             </div>
