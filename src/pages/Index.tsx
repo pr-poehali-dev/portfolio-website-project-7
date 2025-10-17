@@ -186,13 +186,7 @@ const Index = () => {
 
       <footer className="border-t border-black bg-white py-16 px-8">
         <div className="container mx-auto max-w-6xl">
-          <div className="grid grid-cols-3 gap-12">
-            <div>
-              <div className="w-12 h-12 bg-black mb-4" />
-              <p className="text-xs text-gray-600 leading-relaxed">
-                Студия дизайна<br/>и фотографии
-              </p>
-            </div>
+          <div className="grid grid-cols-2 gap-12">
             <div>
               <h3 className="text-sm font-bold mb-4 tracking-wider">КОНТАКТЫ</h3>
               <p className="text-xs text-gray-600 space-y-1">
