@@ -20,6 +20,7 @@ const works: Work[] = [
   { id: 3, src: 'https://cdn.poehali.dev/files/a0b4caf7-f924-42af-ba1c-4e42e565bc49.jpg', type: 'photography', category: 'portraits', title: 'Portrait 3' },
   { id: 4, src: 'https://cdn.poehali.dev/files/4ecca712-4862-47a0-999e-2a740d55182b.jpeg', type: 'photography', category: 'portraits', title: 'Portrait 4' },
   { id: 5, src: 'https://cdn.poehali.dev/files/26a97bfa-80a3-4fdf-9114-2677f8731896.jpg', type: 'photography', category: 'portraits', title: 'Portrait 5' },
+  { id: 6, src: 'https://cdn.poehali.dev/files/e6895dc1-646a-48ac-b0d3-9cd6b0eb15ba.jpg', type: 'photography', category: 'portraits', title: 'Portrait 6' },
 
   { id: 7, src: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80', type: 'photography', category: 'landscapes', title: 'Mountain View' },
   { id: 8, src: 'https://images.unsplash.com/photo-1511818966892-d7d671e672a2?w=800&q=80', type: 'photography', category: 'architecture', title: 'Urban Lines' },
