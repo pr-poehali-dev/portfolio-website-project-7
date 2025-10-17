@@ -88,8 +88,7 @@ const Index = () => {
                 ФОТО
               </h1>
               <p className="text-base leading-relaxed text-gray-600 max-w-md">
-                Минималистичный подход к визуальному дизайну и фотографии. 
-                Чистые линии, смелая типографика, точная композиция.
+                Мое творчество — это синтез искусства, знаний и дизайна
               </p>
               <div className="flex gap-4 pt-4">
                 <a href="https://t.me/ploxoena" target="_blank" rel="noopener noreferrer" className="w-12 h-12 border border-black flex items-center justify-center cursor-pointer hover:bg-black hover:text-white transition-colors">
