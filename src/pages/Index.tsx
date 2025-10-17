@@ -48,8 +48,8 @@ const Index = () => {
     <div className="min-h-screen bg-white">
       <nav className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-black">
         <div className="container mx-auto px-8 py-6 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-black" />
+          <div className="flex items-center gap-3">
+            <img src="https://cdn.poehali.dev/files/0560a6c8-3a1d-4330-922c-9a6c21a6978d.jpg" alt="n.RAW" className="h-8" />
             <span className="text-xl font-bold tracking-tight">ЕЛИСТРАТОВА АНАСТАСИЯ</span>
           </div>
           
