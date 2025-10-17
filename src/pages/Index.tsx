@@ -15,7 +15,7 @@ interface Work {
 }
 
 const works: Work[] = [
-  { id: 1, src: 'https://cdn.poehali.dev/files/3210cd0c-5e53-49a8-8fb5-14acb848e41c.jpg', type: 'photography', category: 'portraits', title: 'Portrait 1' },
+  { id: 1, src: 'https://cdn.poehali.dev/files/e617afcb-350f-4436-bd67-a4e935382106.jpg', type: 'photography', category: 'portraits', title: 'Portrait 1' },
   { id: 2, src: 'https://cdn.poehali.dev/files/0128786e-fd0b-47a5-a70a-b525873ffe81.jpg', type: 'photography', category: 'portraits', title: 'Portrait 2' },
   { id: 3, src: 'https://cdn.poehali.dev/files/a0b4caf7-f924-42af-ba1c-4e42e565bc49.jpg', type: 'photography', category: 'portraits', title: 'Portrait 3' },
   { id: 4, src: 'https://cdn.poehali.dev/files/4ecca712-4862-47a0-999e-2a740d55182b.jpeg', type: 'photography', category: 'portraits', title: 'Portrait 4' },
@@ -107,7 +107,7 @@ const Index = () => {
             <div className="relative animate-scale-in" style={{ animationDelay: '0.2s' }}>
               <div className="absolute -top-8 -left-8 w-full h-full border-2 border-accent -z-10" />
               <img
-                src="https://cdn.poehali.dev/projects/d058fa51-c57a-4c09-887a-08deab4356b5/files/c32f6460-7ddb-4a16-bba5-c73d78e64fe8.jpg"
+                src="https://cdn.poehali.dev/files/3210cd0c-5e53-49a8-8fb5-14acb848e41c.jpg"
                 alt="Studio"
                 className="w-full aspect-square object-cover grayscale"
               />
