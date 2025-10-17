@@ -49,8 +49,8 @@ const Index = () => {
   });
 
   return (
-    <div className="min-h-screen bg-white">
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-black">
+    <div className="min-h-screen bg-background text-foreground">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-sm border-b border-border">
         <div className="container mx-auto px-8 py-6 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <img src="https://cdn.poehali.dev/files/0560a6c8-3a1d-4330-922c-9a6c21a6978d.jpg" alt="n.RAW" className="h-8" />
@@ -61,7 +61,7 @@ const Index = () => {
             <button
               onClick={() => { setSelectedType('photography'); setSelectedCategory('all'); }}
               className={`text-sm font-medium tracking-wider transition-colors ${
-                selectedType === 'photography' ? 'text-black' : 'text-gray-400 hover:text-black'
+                selectedType === 'photography' ? 'text-accent' : 'text-muted-foreground hover:text-foreground'
               }`}
             >
               ФОТОГРАФИЯ
@@ -69,12 +69,12 @@ const Index = () => {
             <button
               onClick={() => setSelectedType('design')}
               className={`text-sm font-medium tracking-wider transition-colors ${
-                selectedType === 'design' ? 'text-black' : 'text-gray-400 hover:text-black'
+                selectedType === 'design' ? 'text-accent' : 'text-muted-foreground hover:text-foreground'
               }`}
             >
               ДИЗАЙН
             </button>
-            <button className="px-6 py-2 bg-accent text-white text-sm font-medium tracking-wider hover:bg-black transition-colors">
+            <button className="px-6 py-2 bg-accent text-accent-foreground text-sm font-medium tracking-wider hover:opacity-90 transition-opacity">
               КОНТАКТ
             </button>
           </div>
@@ -91,14 +91,14 @@ const Index = () => {
                 <span className="text-accent">+</span><br/>
                 ФОТО
               </h1>
-              <p className="text-base leading-relaxed text-gray-600 max-w-md">
+              <p className="text-base leading-relaxed text-muted-foreground max-w-md">
                 Мое творчество — это синтез искусства, знаний и дизайна
               </p>
               <div className="flex gap-4 pt-4">
-                <a href="https://t.me/ploxoena" target="_blank" rel="noopener noreferrer" className="w-12 h-12 border border-black flex items-center justify-center cursor-pointer hover:bg-black hover:text-white transition-colors">
+                <a href="https://t.me/ploxoena" target="_blank" rel="noopener noreferrer" className="w-12 h-12 border border-accent flex items-center justify-center cursor-pointer hover:bg-accent hover:text-accent-foreground transition-colors">
                   <Icon name="Send" size={20} />
                 </a>
-                <a href="https://wa.me/897778016797" target="_blank" rel="noopener noreferrer" className="w-12 h-12 border border-black flex items-center justify-center cursor-pointer hover:bg-black hover:text-white transition-colors">
+                <a href="https://wa.me/897778016797" target="_blank" rel="noopener noreferrer" className="w-12 h-12 border border-accent flex items-center justify-center cursor-pointer hover:bg-accent hover:text-accent-foreground transition-colors">
                   <Icon name="MessageCircle" size={20} />
                 </a>
               </div>
@@ -117,7 +117,7 @@ const Index = () => {
       </section>
 
       {selectedType === 'photography' && (
-        <div className="border-t border-black py-6 bg-muted/20">
+        <div className="border-t border-border py-6 bg-card">
           <div className="container mx-auto px-8">
             <div className="flex gap-8 justify-center">
               {categories.map((cat) => (
@@ -125,7 +125,7 @@ const Index = () => {
                   key={cat.id}
                   onClick={() => setSelectedCategory(cat.id)}
                   className={`text-xs font-bold tracking-widest transition-colors relative ${
-                    selectedCategory === cat.id ? 'text-black' : 'text-gray-400 hover:text-black'
+                    selectedCategory === cat.id ? 'text-accent' : 'text-muted-foreground hover:text-foreground'
                   }`}
                 >
                   {cat.label}
@@ -141,11 +141,11 @@ const Index = () => {
 
       <section className="py-20 px-8">
         <div className="container mx-auto max-w-7xl">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-black">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-border">
             {filteredWorks.map((work, index) => (
               <div
                 key={work.id}
-                className="group relative aspect-square bg-white overflow-hidden cursor-pointer animate-scale-in"
+                className="group relative aspect-square bg-card overflow-hidden cursor-pointer animate-scale-in"
                 style={{ animationDelay: `${index * 0.05}s` }}
                 onClick={() => setSelectedWork(work)}
               >
@@ -156,7 +156,7 @@ const Index = () => {
                   loading="lazy"
                 />
                 <div className="absolute inset-0 bg-accent/0 group-hover:bg-accent/90 transition-all duration-300 flex items-center justify-center">
-                  <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-center text-white p-6">
+                  <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-center text-accent-foreground p-6">
                     <h3 className="text-xl font-bold mb-2 tracking-wide">{work.title}</h3>
                     {work.description && (
                       <p className="text-sm tracking-wider">{work.description}</p>
@@ -170,13 +170,13 @@ const Index = () => {
       </section>
 
       {selectedType === 'design' && (
-        <section className="py-20 px-8 bg-black text-white">
+        <section className="py-20 px-8 bg-card">
           <div className="container mx-auto max-w-4xl text-center space-y-6">
             <h2 className="text-5xl font-bold tracking-tight">
               ГРАФИЧЕСКИЙ<br/>ДИЗАЙН
             </h2>
             <div className="w-24 h-1 bg-accent mx-auto" />
-            <p className="text-gray-400 leading-relaxed max-w-2xl mx-auto">
+            <p className="text-muted-foreground leading-relaxed max-w-2xl mx-auto">
               Работаю с брендингом, типографикой и визуальной идентичностью. 
               Создаю простые и эффективные решения в духе швейцарского дизайна.
             </p>
@@ -184,33 +184,33 @@ const Index = () => {
         </section>
       )}
 
-      <footer className="border-t border-black bg-white py-16 px-8">
+      <footer className="border-t border-border bg-card py-16 px-8">
         <div className="container mx-auto max-w-6xl">
           <div className="grid grid-cols-2 gap-12">
             <div>
               <h3 className="text-sm font-bold mb-4 tracking-wider">КОНТАКТЫ</h3>
-              <p className="text-xs text-gray-600 space-y-1">
+              <p className="text-xs text-muted-foreground space-y-1">
                 <span className="block">elistratova565@gmail.com</span>
                 <span className="block">+7 977 801 67 97</span>
               </p>
             </div>
             <div>
               <h3 className="text-sm font-bold mb-4 tracking-wider">УСЛУГИ</h3>
-              <p className="text-xs text-gray-600 space-y-1">
+              <p className="text-xs text-muted-foreground space-y-1">
                 <span className="block">Фотосъёмка</span>
                 <span className="block">Обучение</span>
                 <span className="block">Графический дизайн</span>
               </p>
             </div>
           </div>
-          <div className="mt-12 pt-8 border-t border-gray-200 text-center text-xs text-gray-400 tracking-wider">
+          <div className="mt-12 pt-8 border-t border-border text-center text-xs text-muted-foreground tracking-wider">
             © 2024 ЕЛИСТРАТОВА АНАСТАСИЯ — ALL RIGHTS RESERVED
           </div>
         </div>
       </footer>
 
       <Dialog open={!!selectedWork} onOpenChange={() => setSelectedWork(null)}>
-        <DialogContent className="max-w-7xl w-[95vw] h-[95vh] p-0 bg-black">
+        <DialogContent className="max-w-7xl w-[95vw] h-[95vh] p-0 bg-background">
           {selectedWork && (
             <div className="relative w-full h-full flex items-center justify-center p-12">
               <button
