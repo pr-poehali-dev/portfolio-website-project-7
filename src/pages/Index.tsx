@@ -92,15 +92,12 @@ const Index = () => {
                 Чистые линии, смелая типографика, точная композиция.
               </p>
               <div className="flex gap-4 pt-4">
-                <div className="w-12 h-12 border border-black flex items-center justify-center cursor-pointer hover:bg-black hover:text-white transition-colors">
-                  <Icon name="Instagram" size={20} />
-                </div>
-                <div className="w-12 h-12 border border-black flex items-center justify-center cursor-pointer hover:bg-black hover:text-white transition-colors">
-                  <Icon name="Linkedin" size={20} />
-                </div>
-                <div className="w-12 h-12 border border-black flex items-center justify-center cursor-pointer hover:bg-black hover:text-white transition-colors">
-                  <Icon name="Mail" size={20} />
-                </div>
+                <a href="https://t.me/ploxoena" target="_blank" rel="noopener noreferrer" className="w-12 h-12 border border-black flex items-center justify-center cursor-pointer hover:bg-black hover:text-white transition-colors">
+                  <Icon name="Send" size={20} />
+                </a>
+                <a href="https://wa.me/897778016797" target="_blank" rel="noopener noreferrer" className="w-12 h-12 border border-black flex items-center justify-center cursor-pointer hover:bg-black hover:text-white transition-colors">
+                  <Icon name="MessageCircle" size={20} />
+                </a>
               </div>
             </div>
             
