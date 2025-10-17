@@ -50,7 +50,7 @@ const Index = () => {
         <div className="container mx-auto px-8 py-6 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 bg-black" />
-            <span className="text-xl font-bold tracking-tight">STUDIO</span>
+            <span className="text-xl font-bold tracking-tight">ЕЛИСТРАТОВА АНАСТАСИЯ</span>
           </div>
           
           <div className="flex items-center gap-12">
