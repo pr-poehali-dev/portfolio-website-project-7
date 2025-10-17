@@ -196,8 +196,8 @@ const Index = () => {
             <div>
               <h3 className="text-sm font-bold mb-4 tracking-wider">КОНТАКТЫ</h3>
               <p className="text-xs text-gray-600 space-y-1">
-                <span className="block">studio@design.ru</span>
-                <span className="block">+7 999 123 45 67</span>
+                <span className="block">elistratova565@gmail.com</span>
+                <span className="block">+7 977 801 67 97</span>
               </p>
             </div>
             <div>
@@ -210,7 +210,7 @@ const Index = () => {
             </div>
           </div>
           <div className="mt-12 pt-8 border-t border-gray-200 text-center text-xs text-gray-400 tracking-wider">
-            © 2024 STUDIO — ALL RIGHTS RESERVED
+            © 2024 ЕЛИСТРАТОВА АНАСТАСИЯ — ALL RIGHTS RESERVED
           </div>
         </div>
       </footer>
