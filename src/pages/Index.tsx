@@ -15,14 +15,18 @@ interface Work {
 }
 
 const works: Work[] = [
-  { id: 1, src: 'https://cdn.poehali.dev/projects/d058fa51-c57a-4c09-887a-08deab4356b5/files/3bf27465-46e9-4279-b9e0-81a085039820.jpg', type: 'photography', category: 'portraits', title: 'Portrait Series' },
-  { id: 2, src: 'https://cdn.poehali.dev/projects/d058fa51-c57a-4c09-887a-08deab4356b5/files/72b1be12-231e-4e14-b3aa-4e6ae759752b.jpg', type: 'photography', category: 'weddings', title: 'Wedding Day' },
-  { id: 3, src: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80', type: 'photography', category: 'landscapes', title: 'Mountain View' },
-  { id: 4, src: 'https://images.unsplash.com/photo-1511818966892-d7d671e672a2?w=800&q=80', type: 'photography', category: 'architecture', title: 'Urban Lines' },
-  { id: 5, src: 'https://cdn.poehali.dev/projects/d058fa51-c57a-4c09-887a-08deab4356b5/files/d2915cfd-2cfb-491b-9abd-122a9c066248.jpg', type: 'design', title: 'Brand Identity', description: 'Minimalist poster design' },
-  { id: 6, src: 'https://cdn.poehali.dev/projects/d058fa51-c57a-4c09-887a-08deab4356b5/files/8553c7b8-1985-4978-ac41-21cacbcdff38.jpg', type: 'design', title: 'Logo System', description: 'Corporate branding' },
-  { id: 7, src: 'https://images.unsplash.com/photo-1626785774573-4b799315345d?w=800&q=80', type: 'design', title: 'Typography Poster', description: 'Swiss design style' },
-  { id: 8, src: 'https://images.unsplash.com/photo-1634986666676-ec8fd927c23d?w=800&q=80', type: 'design', title: 'Editorial Layout', description: 'Magazine spread' },
+  { id: 1, src: 'https://cdn.poehali.dev/files/e617afcb-350f-4436-bd67-a4e935382106.jpg', type: 'photography', category: 'portraits', title: 'Portrait 1' },
+  { id: 2, src: 'https://cdn.poehali.dev/files/0128786e-fd0b-47a5-a70a-b525873ffe81.jpg', type: 'photography', category: 'portraits', title: 'Portrait 2' },
+  { id: 3, src: 'https://cdn.poehali.dev/files/a0b4caf7-f924-42af-ba1c-4e42e565bc49.jpg', type: 'photography', category: 'portraits', title: 'Portrait 3' },
+  { id: 4, src: 'https://cdn.poehali.dev/files/4ecca712-4862-47a0-999e-2a740d55182b.jpeg', type: 'photography', category: 'portraits', title: 'Portrait 4' },
+  { id: 5, src: 'https://cdn.poehali.dev/files/26a97bfa-80a3-4fdf-9114-2677f8731896.jpg', type: 'photography', category: 'portraits', title: 'Portrait 5' },
+  { id: 6, src: 'https://cdn.poehali.dev/projects/d058fa51-c57a-4c09-887a-08deab4356b5/files/72b1be12-231e-4e14-b3aa-4e6ae759752b.jpg', type: 'photography', category: 'weddings', title: 'Wedding Day' },
+  { id: 7, src: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80', type: 'photography', category: 'landscapes', title: 'Mountain View' },
+  { id: 8, src: 'https://images.unsplash.com/photo-1511818966892-d7d671e672a2?w=800&q=80', type: 'photography', category: 'architecture', title: 'Urban Lines' },
+  { id: 9, src: 'https://cdn.poehali.dev/projects/d058fa51-c57a-4c09-887a-08deab4356b5/files/d2915cfd-2cfb-491b-9abd-122a9c066248.jpg', type: 'design', title: 'Brand Identity', description: 'Minimalist poster design' },
+  { id: 10, src: 'https://cdn.poehali.dev/projects/d058fa51-c57a-4c09-887a-08deab4356b5/files/8553c7b8-1985-4978-ac41-21cacbcdff38.jpg', type: 'design', title: 'Logo System', description: 'Corporate branding' },
+  { id: 11, src: 'https://images.unsplash.com/photo-1626785774573-4b799315345d?w=800&q=80', type: 'design', title: 'Typography Poster', description: 'Swiss design style' },
+  { id: 12, src: 'https://images.unsplash.com/photo-1634986666676-ec8fd927c23d?w=800&q=80', type: 'design', title: 'Editorial Layout', description: 'Magazine spread' },
 ];
 
 const Index = () => {
